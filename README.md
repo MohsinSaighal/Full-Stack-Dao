@@ -1,4 +1,4 @@
-# NFT Marketplace
+# Governance-Dapp
 
 ## Technology Stack & Tools
 
@@ -6,7 +6,6 @@
 - Javascript (React & Testing)
 - [Ethers](https://docs.ethers.io/v5/) (Blockchain Interaction)
 - [Hardhat](https://hardhat.org/) (Development Framework)
-- [Ipfs](https://ipfs.io/) (Metadata storage)
 - [React routers](https://v5.reactrouter.com/) (Navigational components)
 
 ## Requirements For Initial Setup
@@ -18,7 +17,7 @@
 
 ### 2. Install Dependencies:
 ```
-$ cd nft_marketplace
+$ cd pathname
 $ npm install
 ```
 ### 3. Boot up local development blockchain
