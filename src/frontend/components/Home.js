@@ -20,7 +20,10 @@ const Home = () => {
   const [id, setId] = useState(null);
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
-  const Provider = new ethers.providers.JsonRpcProvider();
+  const ALCHEMY_API_KEY = "Wk2k1fN6Gv2KG4f7474ABGxpmhQrZKFM";
+  const Provider = new ethers.providers.JsonRpcProvider(
+    `https://polygon-mumbai.g.alchemy.com/v2/${ALCHEMY_API_KEY}`
+  );
   const governance = new ethers.Contract(
     GovernanceAddress.address,
     GovernanceAbi.abi,
@@ -41,13 +44,13 @@ const Home = () => {
     const blockNumber = await Provider.getBlockNumber();
     console.log(`Current blocknumber: ${blockNumber}\n`);
 
-    const quorum = await governance.quorum(blockNumber - 1);
-    console.log(
-      `Number of votes required to pass: ${ethers.utils.formatEther(
-        quorum.toString(),
-        "ether"
-      )}\n`
-    );
+    // const quorum = await governance.quorum(blockNumber - 1);
+    // console.log(
+    //   `Number of votes required to pass: ${ethers.utils.formatEther(
+    //     quorum.toString(),
+    //     "ether"
+    //   )}\n`
+    // );
     await (await governance.castVote(id, value)).wait();
   };
   const checkResult = async () => {
@@ -56,9 +59,9 @@ const Home = () => {
       `Current state of proposal: ${proposalState.toString()} (Active) \n`
     );
     // NOTE: Transfer serves no purposes, it's just used to fast foward one block after the voting period ends
-    const amount = ethers.utils.parseEther("5");
-    const address = await signer.getAddress();
-    await token.transfer(address, amount);
+    // const amount = ethers.utils.parseEther("5");
+    // const address = await signer.getAddress();
+    // await token.transfer(address, amount);
     const votes = await governance.proposalVotes(id);
     console.log(votes);
     const { againstVotes, forVotes, abstainVotes } =

@@ -69,6 +69,8 @@ const Create = () => {
     console.log(
       `Current state of proposal: ${proposalState.toString()} (Pending) \n`
     );
+    const snapshot = await governance.proposalSnapshot(id);
+    console.log(`Proposal created on block ${snapshot.toString()}`);
   };
 
   return (
